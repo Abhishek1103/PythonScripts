@@ -1,2 +1,2 @@
 # PythonScripts
-some python scripts made duriing the learning process...
+Some very useful scripts to ease your life...!! :smiley:
