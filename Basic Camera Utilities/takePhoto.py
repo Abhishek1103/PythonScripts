@@ -1,10 +1,11 @@
 import numpy as np
 import cv2
+import time
 
 #cap=cv2.VideoCapture('output.mp4')
 print("Press \'q\' to exit and \'s\' to save....!!")
-cap=cv2.VideoCapture(0)
-c=0
+cap = cv2.VideoCapture(0)
+c = time.ctime()
 while(cap.isOpened()):
 
     ret,frame=cap.read()
@@ -14,8 +15,8 @@ while(cap.isOpened()):
     if k == ord('q'):
         break
     elif k == ord('s'):
-        c += 1
-        cv2.imwrite('ScreenShot'+str(c)+'.png',frame)
+        c = str(c)
+        cv2.imwrite('ScreenShot-'+c+'.png',frame)
 
 cap.release()
 cv2.destroyAllWindows()
