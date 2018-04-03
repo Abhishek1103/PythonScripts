@@ -15,7 +15,7 @@ response_codes = {200:'Success',
 501:'Account Expired',
 502:'Invalid Arguments'}
 
-api_key = "jad3ee7e4h"
+api_key = <your-api-key>
 
 
 def live_status(train_number, date):
