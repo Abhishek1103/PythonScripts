@@ -1,4 +1,4 @@
-import json as jsn
+import json as json
 from pprint import pprint
 import requests
 import sys
