@@ -60,8 +60,38 @@ def seat_avail(train_number, date, source, dest, pref, quota):
 	print(df)
 	return res_code
 
-def pnr_stat(train_number, date, pnr):
-	return 0
+def pnr_stat(pnr):
+	classes = {'2A':'SECOND AC','CC':'AC CHAIR CAR','2S':'SECOND SEATING','FC':'FIRST CLASS','1A':'FIRST AC','3A':'THIRD AC','3E':'THIRD AC ECONOMY','SL':'SLEEPER'}
+	url = "https://api.railwayapi.com/v2/pnr-status/pnr/"+str(pnr)+"/apikey/"+str(api_key)+"/"
+	res = requests.get(url)
+	data = res.json()
+	res_code = data['response_code']
+	if res_code != 200:
+		print(response_codes[res_code])
+		return res_code
+
+	print("\n")
+	print('\t\tPNR Status: ',data[pnr],"\n") 
+	train_name = data['train']['name']
+	train_number = data['train']['number']
+	chart_prep = data['chart_prepared']
+	from_station = data['from_station']['name']
+	from_station_code = data['from_station']['code']
+	to_station = data['to_station']['name']
+	to_station_code = data['to_station']['code']
+
+	print("\tTrain:\t",train_number," ",train_name)
+	print("\tChart Prep:\t",chart_prep)
+	print("\tFrom Station:\t", from_station_code," ",from_station)
+	print("\tTo Station:\t",to_station_code," ",to_station)
+	print("\tBoarding Point:\t",data['boarding_point']['code']," ",data['boarding_point']['name'])
+	print("\tReservation Upto:\t",data['reservation_upto']['code']," ",data['reservation_upto']['name'])
+	print("\tDate of Journey:\t",data['doj'])
+	print("\tJourney Class:\t",classes[data['journey_class']['code']])
+	df = pd.DataFrame.from_dict(data['passengers'],orient='colums')
+	print("\n\t",df)
+	return res_code
+
 
 sample_url = "https://api.railwayapi.com/v2/live/train/<train number>/date/<dd-mm-yyyy>/apikey/<apikey>/"
 classes = {'2A':'SECOND AC','CC':'AC CHAIR CAR','2S':'SECOND SEATING','FC':'FIRST CLASS','1A':'FIRST AC','3A':'THIRD AC','3E':'THIRD AC ECONOMY','SL':'SLEEPER'}
@@ -102,6 +132,18 @@ if choice <=3 and choice >=1:
 			print("Success..")
 		else:
 			print("Failure")
+	if choice==2:
+		pnr = input("Enter PNR: ").srtip()
+		try:
+			pnr = int(pnr)
+			status = pnr_stat(pnr)
+			if status == 200:
+				print("Success..")
+			else:
+				print("Failure")
+		except ex as Exception:
+			print(ex)
+
 
 
 
