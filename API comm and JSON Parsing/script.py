@@ -71,7 +71,7 @@ def pnr_stat(pnr):
 		return res_code
 
 	print("\n")
-	print('\t\tPNR Status: ',data[pnr],"\n") 
+	print('\t\tPNR Status: ',data['pnr'],"\n") 
 	train_name = data['train']['name']
 	train_number = data['train']['number']
 	chart_prep = data['chart_prepared']
@@ -88,8 +88,9 @@ def pnr_stat(pnr):
 	print("\tReservation Upto:\t",data['reservation_upto']['code']," ",data['reservation_upto']['name'])
 	print("\tDate of Journey:\t",data['doj'])
 	print("\tJourney Class:\t",classes[data['journey_class']['code']])
-	df = pd.DataFrame.from_dict(data['passengers'],orient='colums')
-	print("\n\t",df)
+	df = pd.DataFrame.from_dict(data['passengers'],orient='columns')
+	print("\n",df)
+	print()
 	return res_code
 
 
@@ -97,14 +98,7 @@ sample_url = "https://api.railwayapi.com/v2/live/train/<train number>/date/<dd-m
 classes = {'2A':'SECOND AC','CC':'AC CHAIR CAR','2S':'SECOND SEATING','FC':'FIRST CLASS','1A':'FIRST AC','3A':'THIRD AC','3E':'THIRD AC ECONOMY','SL':'SLEEPER'}
 
 
-train_number = input("Enter the train number: ").strip()
-date = input("Enter the date on which the train starts(dd-MM-yyyy): ").strip()
-try:
-	train_number = int(train_number)
-	if train_number > 99999 :
-		print("Invalid Train number")
-except Exception as ex:
-	print("Invalid Train Number: ", ex)
+
 
 
 print("1. Live Status\n2. Seat Availability\n3. PNR status")
@@ -115,12 +109,28 @@ except:
 	print("Invalid Option. Enter an Integer")
 if choice <=3 and choice >=1:
 	if choice==1:
+		train_number = input("Enter the train number: ").strip()
+		date = input("Enter the date on which the train starts(dd-MM-yyyy): ").strip()
+		try:
+			train_number = int(train_number)
+			if train_number > 99999 :
+				print("Invalid Train number")
+		except Exception as ex:
+			print("Invalid Train Number: ", ex)
 		status = live_status(train_number, date)
 		if status == 200:
 			print("Success..")
 		else:
 			print("Failure")
 	if choice==2:
+		train_number = input("Enter the train number: ").strip()
+		date = input("Enter the date on which the train starts(dd-MM-yyyy): ").strip()
+		try:
+			train_number = int(train_number)
+			if train_number > 99999 :
+				print("Invalid Train number")
+		except Exception as ex:
+			print("Invalid Train Number: ", ex)
 		source = input("Enter code of Source station: ").strip()
 		dest = input("Enter code of destination station: ").strip()
 		clss = pd.DataFrame.from_dict(classes, orient='index')
@@ -132,8 +142,9 @@ if choice <=3 and choice >=1:
 			print("Success..")
 		else:
 			print("Failure")
-	if choice==2:
-		pnr = input("Enter PNR: ").srtip()
+
+	if choice==3:
+		pnr = input("Enter PNR: ").strip()
 		try:
 			pnr = int(pnr)
 			status = pnr_stat(pnr)
@@ -141,7 +152,7 @@ if choice <=3 and choice >=1:
 				print("Success..")
 			else:
 				print("Failure")
-		except ex as Exception:
+		except Exception as ex:
 			print(ex)
 
 
