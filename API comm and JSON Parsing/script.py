@@ -17,10 +17,14 @@ response_codes = {200:'Success',
 
 api_key = <your-api-key>
 
+proxy = {"http" : "http://<username>:<password>@<proxy-url/ip>:<port>",
+"https" : "https://<username>:<password>@<proxy-url/ip>:<port>"}
+
 
 def live_status(train_number, date):
 	url = "https://api.railwayapi.com/v2/live/train/"+str(train_number)+"/date/"+str(date)+"/apikey/"+str(api_key)+"/"
 	res = requests.get(url)
+	#res = requests.get(url, proxies=proxy)
 	data = res.json()
 	res_code = data['response_code']
 	if res_code != 200:
@@ -45,6 +49,7 @@ def seat_avail(train_number, date, source, dest, pref, quota):
 	classes = {'2A':'SECOND AC','CC':'AC CHAIR CAR','2S':'SECOND SEATING','FC':'FIRST CLASS','1A':'FIRST AC','3A':'THIRD AC','3E':'THIRD AC ECONOMY','SL':'SLEEPER'}
 	url = "https://api.railwayapi.com/v2/check-seat/train/"+str(train_number)+"/source/"+str(source)+"/dest/"+str(dest)+"/date/"+str(date)+"/pref/"+str(pref)+"/quota/"+str(quota)+"/apikey/"+str(api_key)+"/"
 	res = requests.get(url)
+	#res = requests.get(url, proxies=proxy)
 	data = res.json()
 	res_code = data['response_code']
 	if res_code != 200:
@@ -64,6 +69,7 @@ def pnr_stat(pnr):
 	classes = {'2A':'SECOND AC','CC':'AC CHAIR CAR','2S':'SECOND SEATING','FC':'FIRST CLASS','1A':'FIRST AC','3A':'THIRD AC','3E':'THIRD AC ECONOMY','SL':'SLEEPER'}
 	url = "https://api.railwayapi.com/v2/pnr-status/pnr/"+str(pnr)+"/apikey/"+str(api_key)+"/"
 	res = requests.get(url)
+	#res = requests.get(url, proxies=proxy)
 	data = res.json()
 	res_code = data['response_code']
 	if res_code != 200:
