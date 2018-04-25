@@ -2,7 +2,7 @@
 
 **API** : [Railway-API](https://railwayapi.com/)
 ## 
-A simple Script to interact with the **Railway API** to get:
+A simple Script to interact with the **Railway API** which in turn fetches information from Indian Railway Servers to get:
 * PNR Status
 * Live Train Runnig status
 * Seat Availability
