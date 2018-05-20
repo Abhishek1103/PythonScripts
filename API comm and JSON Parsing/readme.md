@@ -1,7 +1,7 @@
 ## A simple Script sending queries to API and receiving JSON output
 
 **API** : [Railway-API](https://railwayapi.com/)
-## 
+<br> 
 A simple Script to interact with the **Railway API** which in turn fetches information from Indian Railway Servers to get:
 * PNR Status
 * Live Train Runnig status
@@ -9,8 +9,10 @@ A simple Script to interact with the **Railway API** which in turn fetches infor
 
 ##
 **API** : [Alphavantage](https://www.alphavantage.co/)
+<br>
 A simple script to get time series data af a stock.
 
 ##
 **API** : [Twilio](https://www.twilio.com/)
+<br>
 A simple script to message yourself on your phone
