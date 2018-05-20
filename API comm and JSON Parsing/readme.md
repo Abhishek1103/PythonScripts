@@ -6,3 +6,11 @@ A simple Script to interact with the **Railway API** which in turn fetches infor
 * PNR Status
 * Live Train Runnig status
 * Seat Availability
+
+##
+**API** : [Alphavantage](https://www.alphavantage.co/)
+A simple script to get time series data af a stock.
+
+##
+**API** : [Twilio](https://www.twilio.com/)
+A simple script to message yourself on your phone
